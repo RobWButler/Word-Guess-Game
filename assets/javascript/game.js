@@ -1,6 +1,6 @@
 var guesses = {
-    incorrect: 0,
     correct: 0,
+    incorrect: 0,
     totalguess: 0,
 
     total: function() {
@@ -8,11 +8,11 @@ var guesses = {
     },
 
     rightGuess: function() {
-        this.incorrect = this.incorrect + 1;
+        this.correct = this.correct + 1;
     },
     
     wrongGuess: function() {
-        this.correct + this.correct + 1;
+        this.incorrect + this.incorrect + 1;
     },
 }
 
@@ -22,12 +22,14 @@ document.onkeyup = function(event) {
 
     var letter = event.key.toLowerCase();
 
-    if (letter === answer[-1]) {
-        guesses.wrongGuess();
+    var n = answer.includes(letter);
+
+    if (n) {
+        guesses.rightGuess();
     }
 
     else {
-        guesses.rightGuess();
+        guesses.wrongGuess();
     };
 
     guesses.total();
@@ -35,6 +37,3 @@ document.onkeyup = function(event) {
     console.log(guesses.correct, guesses.incorrect, guesses.totalguess);
 
 }
-
-
-
