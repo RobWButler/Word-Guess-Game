@@ -12,7 +12,7 @@ var guesses = {
     },
     
     wrongGuess: function() {
-        this.incorrect + this.incorrect + 1;
+        this.incorrect = this.incorrect + 1;
     },
 }
 
