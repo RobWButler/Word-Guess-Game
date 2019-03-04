@@ -27,6 +27,7 @@ document.onkeyup = function(event) {
     if (n) {
         guesses.rightGuess();
         document.getElementById("right").innerHTML = guesses.correct;
+        document.getElementById("word").innerHTML = letter
     }
 
     else {
