@@ -16,7 +16,7 @@ var guesses = {
     },
 }
 
-var answer = "Congratulations!"
+var answer = "CONGRATULATIONS"
 var blank = "________________"
 
 //guessing i need to somehow replace the index of the blank array with the correct letter vars, ie, answer[0] -> blank[0]
@@ -24,7 +24,7 @@ var blank = "________________"
 
 document.onkeyup = function(event) {
 
-    var letter = event.key;
+    var letter = event.key.toUpperCase();
 
     var n = answer.includes(letter);
 
@@ -32,6 +32,7 @@ document.onkeyup = function(event) {
         guesses.rightGuess();
         document.getElementById("right").innerHTML = guesses.correct;
         document.getElementById("word").innerHTML = letter
+
     }
 
     else {
