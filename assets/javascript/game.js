@@ -17,6 +17,10 @@ var guesses = {
 }
 
 var answer = "Congratulations!"
+var blank = "________________"
+
+//guessing i need to somehow replace the index of the blank array with the correct letter vars, ie, answer[0] -> blank[0]
+//a loop, maybe?
 
 document.onkeyup = function(event) {
 
