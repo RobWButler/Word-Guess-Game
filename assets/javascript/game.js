@@ -1,5 +1,5 @@
 
-var answers = ["javascript","monkey","amazing","pancake"]
+var answers = ["VAMPIRE","MEDUSA","CARMILLA","SKELETON","DRACULA","BELMONT","CASTLE"]
 var word = answers[Math.floor(Math.random() * answers.length)];
 
 var blank = [];
@@ -37,7 +37,7 @@ document.getElementById("blank").textContent = blank.join(" ")
 
 document.onkeyup = function(event) {
 
-    var letter = event.key.toLowerCase();
+    var letter = event.key.toUpperCase();
 
     if (word.includes(letter)) {
 
