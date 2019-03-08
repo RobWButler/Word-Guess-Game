@@ -7,6 +7,7 @@ for (i = 0; i < word.length; i++) {
     blank[i] = "_";
 }
 
+var remnant = word.length;
 
 var guesses = {
     correct: 0,
@@ -41,13 +42,23 @@ document.onkeyup = function(event) {
 
     if (word.includes(letter)) {
 
-        guesses.rightGuess();
-        document.getElementById("right").innerHTML = guesses.correct;
 
         for(var j = 0; j < word.length; j++) {
-            if (word[j] === letter) {            
+            if (word[j] === letter) {          
+
+                if (blank[j] === "_") {
+                    remnant--;
+                    guesses.rightGuess();
+                    document.getElementById("right").innerHTML = guesses.correct;
+                }
+
                 blank[j] = letter;
-                document.getElementById("blank").textContent = blank.join(" ")
+                document.getElementById("blank").textContent = blank.join(" ");
+
+
+                if (remnant <= 0) {
+                    document.getElementById("endmessage").textContent = "LEVEL CLEAR!"; 
+                }
             }
         }
 
@@ -55,13 +66,15 @@ document.onkeyup = function(event) {
 
     else {
 
-        guesses.wrongGuess();
-        document.getElementById("wrong").innerHTML = guesses.incorrect; 
+        if (blank[j] =! "_") {
 
-        var space = document.getElementById("used-letters")
-        var guessedletters = document.createTextNode(letter + " ");
-        space.appendChild(guessedletters);                         
-    
+            guesses.wrongGuess();
+            document.getElementById("wrong").innerHTML = guesses.incorrect; 
+
+            var space = document.getElementById("used-letters");
+            var guessedletters = document.createTextNode(letter + " ");
+            space.appendChild(guessedletters);                         
+        };
     };
 
     guesses.total();

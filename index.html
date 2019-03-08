@@ -3,25 +3,32 @@
 
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link type="text/stylesheet" href="assets/css/style.css">
+        <link rel="text/stylesheet" href="assets/css/style.css">
     </head>
 
-    <body class="container" style="background-color: black">
+    <body style="background-color:black">
 
-        <img src="assets/images/Castlevania-Opening.png" class="img mx-auto d-block">
-        <br>
-        <h1 class="text-center text-danger">Guess the Word</h1>
-        <h2 id="blank" class="text-center text-danger"></h2>
-        <br>
-        <div class="row">
-            <h3 class="text-center col-sm-4 text-danger">Correct: <p id="right" class="text-center"></p></h3>
-            <h3 class="text-center col-sm-4 text-danger">Incorrect: <p id="wrong" class="text-center"></p></h3>
-            <h3 class="text-center col-sm-4 text-danger">Total guesses: <p id="total" class="text-center"></p></h3>
+        <div class="container">
+            <img src="assets/images/Castlevania-Opening.png" class="img mx-auto d-block mt-5">
+            <br>
+            <h1 id="endmessage" class="text-center text-danger"></h2>
+            <br>
+            <h1 class="text-center text-danger">Guess the Word</h1>
+            <h2 id="blank" class="text-center text-danger"></h2>
+
+            <br>
+            <div class="row">
+                <h3 class="text-center col-sm-4 text-danger">Correct: <p id="right" class="text-center"></p></h3>
+                <h3 class="text-center col-sm-4 text-danger">Incorrect: <p id="wrong" class="text-center"></p></h3>
+                <h3 class="text-center col-sm-4 text-danger">Total guesses: <p id="total" class="text-center"></p></h3>
+            </div>
+            <br>
+            <h3 class="text-center text-danger">Guessed letters: <p id="used-letters"></p></h3>
+
         </div>
-        <br>
-        <h3 class="text-center text-danger">Guessed letters: <p id="used-letters"></p></h3>
 
     </body>
+
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </html>
