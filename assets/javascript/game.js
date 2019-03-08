@@ -7,10 +7,6 @@ var guesses = {
     incorrect: 0,
     totalguess: 0,
 
-    total: function() {
-        this.totalguess = this.incorrect + this.correct;
-    },
-
     rightGuess: function() {
         this.correct = this.correct + 1;
     },
@@ -18,6 +14,11 @@ var guesses = {
     wrongGuess: function() {
         this.incorrect = this.incorrect + 1;
     },
+
+    total: function() {
+        this.totalguess = this.incorrect + this.correct;
+    },
+
 }
 
 
@@ -37,22 +38,28 @@ document.onkeyup = function(event) {
     var n = answer.includes(letter);
 
     if (n) {
+
         guesses.rightGuess();
         document.getElementById("right").innerHTML = guesses.correct;
 
-        for(index = 0; index < blank.length; index++) {
-            if (blank[index] === letter) {
-                blank[index] = letter
-                document.getElementById("blank").innerHTML = letter
+        for(i = 0; i < blank.length; i++) {
+            if (n) {
+                blank.splice(0, 1, letter)
+                document.getElementById("blank").innerHTML = blank.join(" ")
             }
         }
 
     }
 
     else {
-        guesses.wrongGuess();
-        document.getElementById("wrong").innerHTML = guesses.incorrect;
 
+        guesses.wrongGuess();
+        document.getElementById("wrong").innerHTML = guesses.incorrect; 
+
+        var space = document.getElementById("used-letters")
+        var guessedletters = document.createTextNode(letter + " ");
+        space.appendChild(guessedletters);                         
+    
     };
 
     guesses.total();
