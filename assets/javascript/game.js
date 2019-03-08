@@ -1,6 +1,12 @@
 
-var answer = ["C", "O", "N", "G", "R", "A", "T", "U", "L", "A", "T", "I", "O", "N", "S"]
-var blank = ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]
+var answers = ["javascript","monkey","amazing","pancake"]
+var word = answers[Math.floor(Math.random() * answers.length)];
+
+var blank = [];
+for (i = 0; i < word.length; i++) {
+    blank[i] = "_";
+}
+
 
 var guesses = {
     correct: 0,
@@ -25,27 +31,23 @@ var guesses = {
 //guessing i need to somehow replace the index of the blank array with the correct letter vars, ie, answer[0] -> blank[0]
 //a loop, maybe?
 
-//    if(wordChoice[i].toLowerCase() == n.toLowerCase()){
-//    hiddenWord = setCharAt(hiddenWord,i,n);
 
 document.getElementById("blank").textContent = blank.join(" ")
 
 
 document.onkeyup = function(event) {
 
-    var letter = event.key.toUpperCase();
+    var letter = event.key.toLowerCase();
 
-    var n = answer.includes(letter);
-
-    if (n) {
+    if (word.includes(letter)) {
 
         guesses.rightGuess();
         document.getElementById("right").innerHTML = guesses.correct;
 
-        for(i = 0; i < blank.length; i++) {
-            if (n) {
-                blank.splice(0, 1, letter)
-                document.getElementById("blank").innerHTML = blank.join(" ")
+        for(var j = 0; j < word.length; j++) {
+            if (word[j] === letter) {            
+                blank[j] = letter;
+                document.getElementById("blank").textContent = blank.join(" ")
             }
         }
 
