@@ -77,7 +77,7 @@ document.onkeyup = function(event) {
             var guessedletters = document.createTextNode(letter + " ");
             space.appendChild(guessedletters);
             
-            if (guesses.chances <= 0) {
+            if (guesses.chances === 0) {
                 
                 document.getElementById("endmessage").textContent = "GAME OVER"; 
                 var nextBtn = document.createElement("button");
