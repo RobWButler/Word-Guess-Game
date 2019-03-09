@@ -1,15 +1,11 @@
 
-var answers = ["VAMPIRE","MEDUSA","CARMILLA","SKELETON","DRACULA","BELMONT","CASTLE"]
+var answers = ["VAMPIRE","MEDUSA","CARMILLA","SKELETON","DRACULA","BELMONT","CURSE","CASTLE"]
 var word = answers[Math.floor(Math.random() * answers.length)];
 
 var blank = [];
 for (i = 0; i < word.length; i++) {
     blank[i] = "_";
 }
-
-function nextLevel() {
-    location.reload();
-  }
 
 var remnant = word.length;
 
@@ -18,6 +14,7 @@ var guesses = {
     incorrect: 0,
     totalguess: 0,
     chances: 8,
+    score: 0,
 
     rightGuess: function() {
         this.correct = this.correct + 1;
@@ -58,6 +55,8 @@ document.onkeyup = function(event) {
 
 
                     if (remnant === 0) {
+                        guesses.score = guesses.score + 1
+                        document.getElementById("score").innerHTML = guesses.score;
                         document.getElementById("endmessage").textContent = "LEVEL CLEAR!"; 
                         var nextBtn = document.createElement("button");
                         var btnText = document.createTextNode("Next Level");
@@ -96,4 +95,38 @@ document.onkeyup = function(event) {
 
         console.log(guesses.correct, guesses.incorrect, guesses.totalguess);
     }
+}
+
+function retry() {
+
+    answers = ["VAMPIRE","MEDUSA","CARMILLA","SKELETON","DRACULA","BELMONT","CURSE","CASTLE"]
+    word = answers[Math.floor(Math.random() * answers.length)];
+
+    blank.length = 0;
+
+    for (i = 0; i < word.length; i++) {
+        blank[i] = "_";
+    }
+
+    if (guesses.chances <= 0) {
+        guesses.score = 0;
+    }
+
+
+    guesses.correct = 0
+    guesses.incorrect = 0
+    guesses.totalguess = 0
+    guesses.chances = 8
+
+    remnant = word.length;
+
+    document.getElementById("blank").textContent = blank.join(" ")
+    document.getElementById("right").innerHTML = guesses.correct;
+    document.getElementById("wrong").innerHTML = guesses.incorrect;
+    document.getElementById("total").innerHTML = guesses.chances;
+    document.getElementById("used-letters").innerHTML = "";
+    document.getElementById("endmessage").innerHTML = "";
+    document.getElementById("btn").innerHTML = "";
+    document.getElementById("score").innerHTML = guesses.score;
+
 }
