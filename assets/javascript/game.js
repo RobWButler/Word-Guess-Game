@@ -38,60 +38,62 @@ document.getElementById("blank").textContent = blank.join(" ")
 
 document.onkeyup = function(event) {
 
-    var letter = event.key.toUpperCase();
+    if (guesses.chances > 0, remnant > 0){
 
-    if (word.includes(letter)) {
+        var letter = event.key.toUpperCase();
 
-        for(var j = 0; j < word.length; j++) {
-            if (word[j] === letter) {          
+        if (word.includes(letter)) {
 
-                if (blank[j] === "_") {
-                    remnant--;
-                    guesses.rightGuess();
-                    document.getElementById("right").innerHTML = guesses.correct;
-                }
+            for(var j = 0; j < word.length; j++) {
+                if (word[j] === letter) {          
 
-                blank[j] = letter;
-                document.getElementById("blank").textContent = blank.join(" ");
+                    if (blank[j] === "_") {
+                        remnant--;
+                        guesses.rightGuess();
+                        document.getElementById("right").innerHTML = guesses.correct;
+                    }
+
+                    blank[j] = letter;
+                    document.getElementById("blank").textContent = blank.join(" ");
 
 
-                if (remnant <= 0) {
-                    document.getElementById("endmessage").textContent = "LEVEL CLEAR!"; 
-                    var nextBtn = document.createElement("button");
-                    var btnText = document.createTextNode("Next Level");
-                    nextBtn.appendChild(btnText);
-                    document.getElementById("btn").appendChild(nextBtn); 
-                    
+                    if (remnant === 0) {
+                        document.getElementById("endmessage").textContent = "LEVEL CLEAR!"; 
+                        var nextBtn = document.createElement("button");
+                        var btnText = document.createTextNode("Next Level");
+                        nextBtn.appendChild(btnText);
+                        document.getElementById("btn").appendChild(nextBtn); 
+                        
+                    }
                 }
             }
+
         }
 
-    }
+        else {
+                guesses.wrongGuess();
+                document.getElementById("wrong").innerHTML = guesses.incorrect; 
+                guesses.chances = guesses.chances - 1
 
-    else {
-            guesses.wrongGuess();
-            document.getElementById("wrong").innerHTML = guesses.incorrect; 
-            guesses.chances = guesses.chances - 1
-
-            var space = document.getElementById("used-letters");
-            var guessedletters = document.createTextNode(letter + " ");
-            space.appendChild(guessedletters);
-            
-            if (guesses.chances === 0) {
+                var space = document.getElementById("used-letters");
+                var guessedletters = document.createTextNode(letter + " ");
+                space.appendChild(guessedletters);
                 
-                document.getElementById("endmessage").textContent = "GAME OVER"; 
-                var nextBtn = document.createElement("button");
-                var btnText = document.createTextNode("Try Again");
-                nextBtn.appendChild(btnText);
-                document.getElementById("btn").appendChild(nextBtn); 
-            }
+                if (guesses.chances === 0) {
+                    
+                    document.getElementById("endmessage").textContent = "GAME OVER"; 
+                    var nextBtn = document.createElement("button");
+                    var btnText = document.createTextNode("Try Again");
+                    nextBtn.appendChild(btnText);
+                    document.getElementById("btn").appendChild(nextBtn); 
+                }
 
-    };
+        };
 
-    guesses.total();
-    document.getElementById("total").innerHTML = guesses.chances;
+        guesses.total();
+        document.getElementById("total").innerHTML = guesses.chances;
 
 
-    console.log(guesses.correct, guesses.incorrect, guesses.totalguess);
-
+        console.log(guesses.correct, guesses.incorrect, guesses.totalguess);
+    }
 }
